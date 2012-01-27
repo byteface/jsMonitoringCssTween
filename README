@@ -1,0 +1,1 @@
+can monitor a css tween on a div and pass the values into canvas and effectively use it as a tween engine to drive graphics.
