@@ -1,0 +1,77 @@
+<doctype html>
+
+<!-- so you can use css tweens to tween a value, perhaps even on a hidden div. 
+then control objects with javascript based on the tween value. i.e. form a 3d array of target positions.
+
+draw a ball across the page
+-->
+
+
+<head>
+    
+    <style>
+        
+        body { padding: 100px 0 0 100px; background: #ccc;}
+        
+        div {
+            width: 0;
+            height: 1px;
+            background-color: #000;
+            -webkit-animation: animate 8s ease-out;
+            -webkit-animation-fill-mode: forwards;
+        }
+        
+        @-webkit-keyframes animate {
+            0% { width: 0; }
+            50% { width: 100px; }
+        }
+        
+    </style>
+    
+</head>
+
+<body>
+
+<script>
+        
+    // canvas element and 2D context
+    var canvas = document.createElement( 'canvas' );
+    var	context = canvas.getContext( '2d' );
+    var container = document.createElement( 'div' );
+    document.body.appendChild( container );
+    container.appendChild(canvas); 
+    canvas.width = window.innerWidth; 
+    canvas.height = window.innerHeight;
+
+    setInterval( test, 1 );
+    
+    function test()
+    {
+        context.clearRect ( 0 , 0 , 600 , 600 );
+    
+        var targetValue = 500;
+    
+        var myDiv = document.getElementById( "pedro" );
+
+//      window.console.log( (targetYposition*myDiv.offsetWidth)/100 );
+
+		// set the fill style to have the right alpha
+		context.fillStyle = "rgba(100,255,255,1)";
+		
+		//for( var i=0; i<20; i++ )
+//		{
+            // draw a circle grab the css tween position and use to control our arc
+            context.beginPath();
+            context.arc( 100 +Math.cos(myDiv.offsetWidth)*10, (targetValue*myDiv.offsetWidth)/100, 5, 0, Math.PI*2, true);
+            context.closePath();
+            context.fill();
+  //      }
+
+}
+    
+</script>
+
+<div id="pedro"></div>
+
+</body>
+</html>
